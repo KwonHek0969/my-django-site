@@ -2,11 +2,11 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ anime.title }} - Просмотр</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Для иконок, если нужно -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <style>
         /* Темная тема */
         body {
@@ -62,7 +62,19 @@
         }
 
         .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
             margin-top: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .comments {
@@ -84,7 +96,7 @@
             <!-- Левая колонка: Постер -->
             <div class="col-md-4">
                 {% if anime.poster %}
-                    <img src="{{ anime.poster.url }}" class="img-fluid rounded shadow" alt="Постер {{ anime.title }}">
+                    <img src="{{ anime.poster.url }}" class="img-fluid rounded shadow" alt="Постер {{ anime.title }}" />
                 {% else %}
                     <p class="text-muted">Постер отсутствует.</p>
                 {% endif %}
@@ -98,13 +110,10 @@
             </div>
         </div>
 
-        <!-- Видео -->
-        {% if anime.video %}
+        <!-- Видео с YouTube -->
+        {% if embed_url %}
             <div class="video-container">
-                <video width="100%" controls>
-                    <source src="{{ anime.video.url }}" type="video/mp4">
-                    Ваш браузер не поддерживает воспроизведение видео.
-                </video>
+                <iframe src="{{ embed_url }}" frameborder="0" allowfullscreen></iframe>
             </div>
         {% else %}
             <p class="text-muted">Видео недоступно.</p>

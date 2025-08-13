@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-npk&l9y3kob9z730(4jds)3v)#9gf%4a#(c-jfb4g$*_l-%p!t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['anime-mus.onrender.com', 'mus-anime.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['mus-anime.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
