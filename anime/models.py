@@ -9,15 +9,18 @@ class Category(models.Model):
         return self.name
 
 class Anime(models.Model):
-    title=models.CharField(max_length=200)
-    description=models.TextField()
-    release_year=models.PositiveIntegerField()
-    poster=models.ImageField(upload_to='posters/',blank=True,null=True)
-    video=models.FileField(upload_to='videos/',blank=True,null=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    release_year = models.PositiveIntegerField()
+    poster = models.ImageField(upload_to='posters/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='animes', null=True, blank=True)
+    youtube_url = models.URLField(blank=True, null=True)
+    video = models.FileField(upload_to='videos/', blank=True, null=True)
 
-    def __str__(self):
+
+def __str__(self):
         return self.title
+
 
 
 class Rating(models.Model):
